@@ -1,25 +1,57 @@
-import logo from './logo.svg';
+import React, { Component } from 'react';
+import axios from 'axios';
 import './App.css';
+import Cabecalho from './Components/Cabecalho';
+import Formulario from './Components/Formulario';
+import ListaRepositorio from './Components/ListaRepositorios';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  state = {
+    user: "",
+    repos: [],
+    error: "",
+    loading: false,
+  };
+
+  changeUser = user =>{
+    this.setState({user});
+  }
+
+  searchUser = async (event) =>{  
+    const {user} = this.state;
+    this.setState({loading: true});
+    event.preventDefault();
+
+    try{
+      const{data: repos} = await axios.get(`https://api.github.com/users/${user}/repos`);
+      console.log(repos);
+      this.setState({repos, error: "", loading: false});
+    }catch{
+      this.setState({
+        error: "usuario não encontrado",
+        repos: [],
+        loading: false
+      });
+    }
+  }
+
+  render() {
+    
+    const{user, repos, error, loading} = this.state;
+    return (
+      <div className="App">
+        <Cabecalho/>
+        <Formulario
+          changeUser={this.changeUser}
+          user={user}
+          error={error}
+          loading={loading}
+          buttonAction={this.searchUser}
+        />
+        <ListaRepositorio repos={repos}/>
+      </div>
+    );
+  }
 }
 
 export default App;
