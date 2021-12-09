@@ -1,0 +1,32 @@
+
+.containerFormulario {
+  margin: auto;
+  text-align: center;
+}
+.input {
+  flex: 1;
+  height: 40px;
+  padding: 0 20px;
+  background: #fff;
+  bottom: 0;
+  color: #444;
+  font-size: 18px;
+  border-radius: 4px;
+}
+.botaoBusca {
+  width: 150px;
+  height: 42px;
+  padding: 10px;
+  margin-left: 10px;
+  background: #6e5494;
+  color: #f5f5f5;
+  border: 0;
+  font-size: 20px;
+  font-weight: bold;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.erro{
+  color: #bd2c00;
+}
+

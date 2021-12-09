@@ -1,9 +1,10 @@
-import React, { Component } from 'react';
+import React, { Component} from 'react';
 import axios from 'axios';
 import './App.css';
 import Cabecalho from './Components/Cabecalho';
 import Formulario from './Components/Formulario';
 import ListaRepositorio from './Components/ListaRepositorios';
+import BarraDePesquisa from './Components/BarraDePesquisa';
 
 class App extends Component {
   state = {
@@ -35,9 +36,10 @@ class App extends Component {
     }
   }
 
+
   render() {
-    
     const{user, repos, error, loading} = this.state;
+
     return (
       <div className="App">
         <Cabecalho/>
@@ -48,6 +50,7 @@ class App extends Component {
           loading={loading}
           buttonAction={this.searchUser}
         />
+        <BarraDePesquisa/>
         <ListaRepositorio repos={repos}/>
       </div>
     );

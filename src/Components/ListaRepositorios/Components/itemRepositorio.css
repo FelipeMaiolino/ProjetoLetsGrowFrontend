@@ -1,0 +1,25 @@
+.containerItemRepositorio {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  width: 27%;
+  background: #fff;
+  height: 90px;
+  padding: 20px;
+  margin: 10px;
+  border-radius: 5px;
+  box-shadow: 3px 3px 10px #ddd;
+  text-decoration: none;
+}
+
+.containerItemRepositorio > span {
+  font-size: 14px;
+  font-weight: normal;
+  color: #000;
+}
+
+.containerItemRepositorio > span:first-child {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 8px;
+}

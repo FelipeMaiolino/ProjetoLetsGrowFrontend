@@ -1,6 +1,6 @@
 import React from 'react';
 import Loading from '../Loading/loading';
-
+import './formulario.css'
 
 
 const Formulario = ({user, loading, error, buttonAction, changeUser, e})=>(
