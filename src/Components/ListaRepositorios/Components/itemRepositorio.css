@@ -3,19 +3,19 @@
   flex-direction: column;
   padding: 10px;
   width: 27%;
-  background: #fff;
-  height: 90px;
+  background: #4078c0;
+  height: 130px;
   padding: 20px;
   margin: 10px;
   border-radius: 5px;
-  box-shadow: 3px 3px 10px #ddd;
+  box-shadow: 3px 3px 10px rgb(0, 0, 0);
   text-decoration: none;
 }
 
 .containerItemRepositorio > span {
   font-size: 14px;
   font-weight: normal;
-  color: #000;
+  color: #333;
 }
 
 .containerItemRepositorio > span:first-child {

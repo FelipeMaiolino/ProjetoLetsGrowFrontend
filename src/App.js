@@ -13,7 +13,6 @@ class App extends Component {
     language: "",
     repos: [],
     error: "",
-    loading: false,
   };
 
   changeUser = user =>{
@@ -27,43 +26,43 @@ class App extends Component {
   searchUser = async (event) =>{  
     const {user} = this.state;
     event.preventDefault();
-
     try{
       const{data: repos} = await axios.get(`https://api.github.com/users/${user}/repos`);
       console.log(repos);
-      this.setState({repos, error: "", loading: false});
+      this.setState({
+        repos, 
+        error: "", 
+        user: "",
+        language: ""});
     }catch{
       this.setState({
         error: "usuario não encontrado",
         repos: [],
-        loading: false
       });
     }
   }
 
-  searchLanguage = async (event) =>{  
+  searchLanguage = async (event) =>{ 
     const {language} = this.state;
     event.preventDefault();
-
-    try{
-      
-      axios.get(`https://api.github.com/search/repositories?q=language%3A${language}`)
+    axios.get(`https://api.github.com/search/repositories?q=language%3A${language}`)
       .then(response => {
         this.setState({
           repos: response.data.items,
+          user: "",
+          language: ""
         });
-      })
-    }catch{
-      this.setState({
-        error: "Linguagem não encontrada",
-        repos: [],
-      });
+      }).catch(error => {
+        this.setState({
+          error: "usuario não encontrado",
+          repos: [],
+      }); 
     }
-  }
+  )}
 
 
   render() {
-    const{user, language, repos, error, loading} = this.state;
+    const{user, language, repos, error, errorL} = this.state;
 
     return (
       <div className="App">
@@ -72,14 +71,12 @@ class App extends Component {
           changeUser={this.changeUser}
           user={user}
           error={error}
-          loading={loading}
           buttonAction={this.searchUser}
         />
         <FormularioBuscaPorLinguagem
           changeLanguage={this.changeLanguage}
           language={language}
-          error={error}
-          loading={loading}
+          error={errorL}
           buttonAction={this.searchLanguage}
         />
         <ListaRepositorio repos={repos}/>

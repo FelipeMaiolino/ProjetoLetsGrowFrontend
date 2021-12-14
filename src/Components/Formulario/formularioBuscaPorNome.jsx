@@ -1,5 +1,4 @@
 import React from 'react';
-import Loading from '../Loading/loading';
 import './formulario.css'
 
 
@@ -13,9 +12,8 @@ const FormularioBuscaPorNome = ({user, loading, error, buttonAction, changeUser,
       onChange={e=>changeUser(e.target.value)}
       />
       <button className="botaoBusca" onClick={buttonAction}>
-        {loading ? <Loading/> : "Buscar"}
+        Buscar
       </button>
-
       <p className="erro">{error}</p>
   </form>
 );
