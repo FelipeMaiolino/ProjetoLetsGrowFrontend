@@ -3,14 +3,14 @@ import Loading from '../Loading/loading';
 import './formulario.css'
 
 
-const Formulario = ({user, loading, error, buttonAction, changeUser, e})=>(
+const FormularioBuscaPorLinguagem = ({language, loading, error, buttonAction, changeLanguage, e})=>(
   <form className="containerFormulario">
     <input
       type="text"
       className="input"
-      value={user}
-      placeholder="Usuario"
-      onChange={e=>changeUser(e.target.value)}
+      value={language}
+      placeholder="Linguagem"
+      onChange={e=>changeLanguage(e.target.value)}
       />
       <button className="botaoBusca" onClick={buttonAction}>
         {loading ? <Loading/> : "Buscar"}
@@ -20,4 +20,4 @@ const Formulario = ({user, loading, error, buttonAction, changeUser, e})=>(
   </form>
 );
 
-export default Formulario;
+export default FormularioBuscaPorLinguagem;

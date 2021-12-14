@@ -1,2 +1,3 @@
-import Formulario from "./formulario";
-export default Formulario;
+import FormularioBuscaPorNome from "./formularioBuscaPorNome";
+
+export default FormularioBuscaPorNome;
