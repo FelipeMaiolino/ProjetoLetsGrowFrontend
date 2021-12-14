@@ -2,13 +2,15 @@ import React, { Component} from 'react';
 import axios from 'axios';
 import './App.css';
 import Cabecalho from './Components/Cabecalho';
-import Formulario from './Components/Formulario';
+import FormularioBuscaPorNome from './Components/Formulario';
+import FormularioBuscaPorLinguagem from './Components/Formulario/formularioBuscaPorLinguagem';
 import ListaRepositorio from './Components/ListaRepositorios';
-import BarraDePesquisa from './Components/BarraDePesquisa';
+
 
 class App extends Component {
   state = {
     user: "",
+    language: "",
     repos: [],
     error: "",
     loading: false,
@@ -18,9 +20,12 @@ class App extends Component {
     this.setState({user});
   }
 
+  changeLanguage = language =>{
+    this.setState({language});
+  }
+
   searchUser = async (event) =>{  
     const {user} = this.state;
-    this.setState({loading: true});
     event.preventDefault();
 
     try{
@@ -36,21 +41,47 @@ class App extends Component {
     }
   }
 
+  searchLanguage = async (event) =>{  
+    const {language} = this.state;
+    event.preventDefault();
+
+    try{
+      
+      axios.get(`https://api.github.com/search/repositories?q=language%3A${language}`)
+      .then(response => {
+        this.setState({
+          repos: response.data.items,
+        });
+      })
+    }catch{
+      this.setState({
+        error: "Linguagem não encontrada",
+        repos: [],
+      });
+    }
+  }
+
 
   render() {
-    const{user, repos, error, loading} = this.state;
+    const{user, language, repos, error, loading} = this.state;
 
     return (
       <div className="App">
         <Cabecalho/>
-        <Formulario
+        <FormularioBuscaPorNome
           changeUser={this.changeUser}
           user={user}
           error={error}
           loading={loading}
           buttonAction={this.searchUser}
         />
-        <BarraDePesquisa/>
+        <FormularioBuscaPorLinguagem
+          changeLanguage={this.changeLanguage}
+          language={language}
+          error={error}
+          loading={loading}
+          buttonAction={this.searchLanguage}
+        />
         <ListaRepositorio repos={repos}/>
       </div>
     );
