@@ -1,9 +1,10 @@
 import React from 'react';
-import './formulario.css'
+import '../style/formulario.css'
 
 
-const FormularioBuscaPorNome = ({user, loading, error, buttonAction, changeUser, e})=>(
+const FormularioBuscaPorUsuario = ({user, error, buttonAction, changeUser, e})=>(
   <form className="containerFormulario">
+    <p className="erro">{error}</p>
     <input
       type="text"
       className="input"
@@ -14,8 +15,8 @@ const FormularioBuscaPorNome = ({user, loading, error, buttonAction, changeUser,
       <button className="botaoBusca" onClick={buttonAction}>
         Buscar
       </button>
-      <p className="erro">{error}</p>
+      
   </form>
 );
 
-export default FormularioBuscaPorNome;
+export default FormularioBuscaPorUsuario;

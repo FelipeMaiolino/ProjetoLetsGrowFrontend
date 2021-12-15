@@ -1,5 +1,5 @@
 import React from 'react';
-import './formulario.css'
+import '../style/formulario.css'
 
 
 const FormularioBuscaPorLinguagem = ({language, loading, error, buttonAction, changeLanguage, e})=>(
@@ -14,7 +14,7 @@ const FormularioBuscaPorLinguagem = ({language, loading, error, buttonAction, ch
       <button className="botaoBusca" onClick={buttonAction}>
         Buscar
       </button>
-      <p className="erro">{error}</p>
+      
   </form>
 );
 
